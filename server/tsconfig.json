@@ -1,0 +1,25 @@
+{
+	"extends": "../tsconfig.json",
+	"compilerOptions": {
+		"jsx": "react-jsx",
+		"jsxImportSource": "react",
+		"baseUrl": "./",
+		"paths": {
+			"@/server/*": [
+				"./src/*"
+			]
+		},
+		"types": [
+			"hono",
+			"bun"
+		],
+		"strict": true,
+		"inlineSources": true,
+		"outDir": "./dist",
+		"sourceMap": true,
+		// Set `sourceRoot` to  "/" to strip the build path prefix
+		// from generated source code references.
+		// This improves issue grouping in Sentry.
+		"sourceRoot": "/"
+	}
+}
