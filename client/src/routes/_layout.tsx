@@ -79,7 +79,7 @@ function RouteComponent() {
 			<footer className="absolute z-10 my-6 w-full border-t bg-white py-6 md:py-0">
 				<div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
 					<p className="text-muted-foreground text-center text-sm leading-loose md:text-left">
-						© 2025 The Circular Hub
+						© 2025 Mainstack
 					</p>
 					<div className="flex gap-4">
 						<Link
