@@ -4,7 +4,7 @@ import { type CreateEmailResponseSuccess, Resend } from "resend"
 import { env } from "../../t3-env"
 import { ERROR_CODE, ERROR_MESSAGE } from "../constants"
 
-export const resend = new Resend(env.RESEND_API_KEY)
+export const resend = new Resend(env.RESEND_API_KEY ?? "")
 
 export const FROM = "Acme <onboarding@resend.dev>"
 
