@@ -1,11 +1,4 @@
-import type {
-	CreateRespuestas,
-	EditUsuario,
-	LoginUsuario,
-	Respuestas,
-	SignupUsuario,
-	Usuario,
-} from "@monorepo/server/db"
+import type { EditUsuario, LoginUsuario, SignupUsuario, Usuario } from "@monorepo/server/db"
 
 import { queryOptions } from "@tanstack/react-query"
 import SuperJSON from "superjson"
@@ -270,102 +263,6 @@ export async function editMe(data: EditUsuario): Promise<string | null> {
 				}
 
 				return json.status
-			}),
-	)
-}
-
-export async function saveRespuestas(respuestas: CreateRespuestas): Promise<Respuestas> {
-	return fetchWithAuth().then((token) =>
-		client.api.respuestas
-			.$post(
-				{
-					json: respuestas,
-				},
-				{ headers: { Authorization: `Bearer ${token}` } },
-			)
-			.then(async (res) => {
-				const json = await res.json()
-
-				if (!res.ok && "status" in json && "message" in json) {
-					await checkRateLimit(json.status as unknown as number)
-
-					throw new Error(json.message as string)
-				}
-
-				return SuperJSON.parse(json.respuesta)
-			}),
-	)
-}
-
-export async function getRespuestas(): Promise<Respuestas[] | null> {
-	return fetchWithAuth().then((token) =>
-		client.api.respuestas
-			.$get({}, { headers: { Authorization: `Bearer ${token}` } })
-			.then(async (res) => {
-				const json = await res.json()
-
-				if (!res.ok && "status" in json && "message" in json) {
-					await checkRateLimit(json.status as unknown as number)
-
-					throw new Error(json.message as string)
-				}
-
-				return SuperJSON.parse(json.respuestas)
-			}),
-	)
-}
-
-export const getRespuestasOptions = (usuarioId: string | undefined) => {
-	return queryOptions({
-		queryKey: ["resultados", usuarioId],
-		queryFn: getRespuestas,
-		enabled: !!usuarioId,
-		staleTime: Infinity,
-		throwOnError: true,
-	})
-}
-
-export async function getRespuestaById(respuestaId: string): Promise<Respuestas | null> {
-	return fetchWithAuth().then((token) =>
-		client.api.respuestas[":id"]
-			.$get({ param: { id: respuestaId } }, { headers: { Authorization: `Bearer ${token}` } })
-			.then(async (res) => {
-				const json = await res.json()
-
-				if (!res.ok && "status" in json && "message" in json) {
-					await checkRateLimit(json.status as unknown as number)
-
-					throw new Error(json.message as string)
-				}
-
-				return SuperJSON.parse(json.respuesta)
-			}),
-	)
-}
-export const getRespuestaByIdOptions = (usuarioId: string | undefined, respuestaId: string) => {
-	return queryOptions({
-		queryKey: ["respuestas", usuarioId, respuestaId],
-		queryFn: () => getRespuestaById(respuestaId),
-		enabled: !!usuarioId && !!respuestaId,
-		staleTime: Infinity,
-		throwOnError: true,
-	})
-}
-
-export async function deleteRespuestaById(respuestaId: string): Promise<Respuestas> {
-	return fetchWithAuth().then((token) =>
-		client.api.respuestas[":id"]
-			.$delete({ param: { id: respuestaId } }, { headers: { Authorization: `Bearer ${token}` } })
-			.then(async (res) => {
-				const json = await res.json()
-
-				if (!res.ok && "status" in json && "message" in json) {
-					await checkRateLimit(json.status as unknown as number)
-
-					throw new Error(json.message as string)
-				}
-
-				return SuperJSON.parse(json.respuesta)
 			}),
 	)
 }

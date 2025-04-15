@@ -1,4 +1,4 @@
-import type { Respuestas, Usuario } from "@monorepo/server/db"
+import type { Usuario } from "@monorepo/server/db"
 
 import { create } from "zustand"
 
@@ -20,15 +20,6 @@ export interface StoreState {
 	setPaths: (paths: string) => void
 	usuario: Usuario | undefined
 	setUsuario: (data: Usuario) => void
-	resultados: Respuestas[] | undefined
-	setResultados: (data: Respuestas[]) => void
-	updateResultados: ({
-		respuesta,
-		action,
-	}: {
-		respuesta: Respuestas
-		action: "insert" | "delete"
-	}) => void
 }
 
 export const useStore = create<StoreState>()((set) => ({
@@ -71,21 +62,4 @@ export const useStore = create<StoreState>()((set) => ({
 		}),
 	usuario: undefined,
 	setUsuario: (usuario) => set(() => ({ usuario })),
-	resultados: undefined,
-	setResultados: (resultados) => set(() => ({ resultados })),
-	updateResultados: ({ respuesta, action }) =>
-		set(({ resultados }) => {
-			let updatedResultados = resultados
-
-			switch (action) {
-				case "insert":
-					updatedResultados?.unshift(respuesta)
-					break
-				case "delete":
-					updatedResultados = resultados?.filter((res) => res.id !== respuesta.id)
-					break
-			}
-
-			return { resultados: updatedResultados }
-		}),
 }))

@@ -10,8 +10,7 @@
 		"lint": "bun run --filter '*' lint",
 		"lint:fix": "bun run --filter '*' lint:fix",
 		"typecheck": "bun run --filter '*' typecheck",
-		"clean": "sudo rm -rf node_modules && bun run --filter '*' clean",
-		"migrate": "bun run --filter '*' db:generate && bun run --filter '*' db:push"
+		"clean": "sudo rm -rf node_modules && bun run --filter '*' clean"
 	},
 	"workspaces": ["client", "server", "packages/*"],
 	"packageManager": "bun",

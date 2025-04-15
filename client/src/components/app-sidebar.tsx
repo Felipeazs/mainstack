@@ -1,5 +1,5 @@
 import { Link, useLocation } from "@tanstack/react-router"
-import { BarChart3, Home, PlusCircle } from "lucide-react"
+import { Home } from "lucide-react"
 
 import { cn } from "../lib/utils"
 import {
@@ -19,16 +19,6 @@ const items = [
 		title: "Panel Principal",
 		url: "/panel",
 		icon: Home,
-	},
-	{
-		title: "Mis Resultados",
-		url: "/resultados",
-		icon: BarChart3,
-	},
-	{
-		title: "Nueva Evaluación",
-		url: "/evaluacion",
-		icon: PlusCircle,
 	},
 ]
 

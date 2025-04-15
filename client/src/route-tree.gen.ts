@@ -19,11 +19,8 @@ import { Route as LayoutAuthImport } from './routes/_layout/_auth'
 import { Route as LayoutPasswordResetImport } from './routes/_layout/password/reset'
 import { Route as LayoutPasswordForgotImport } from './routes/_layout/password/forgot'
 import { Route as LayoutAuthUsuarioImport } from './routes/_layout/_auth/_usuario'
-import { Route as LayoutAuthEvaluacionIndexImport } from './routes/_layout/_auth/evaluacion/index'
 import { Route as LayoutAuthUsuarioPanelImport } from './routes/_layout/_auth/_usuario/panel'
 import { Route as LayoutAuthUsuarioAjustesImport } from './routes/_layout/_auth/_usuario/ajustes'
-import { Route as LayoutAuthUsuarioResultadosIndexImport } from './routes/_layout/_auth/_usuario/resultados/index'
-import { Route as LayoutAuthUsuarioResultadosIdImport } from './routes/_layout/_auth/_usuario/resultados/$id'
 
 // Create/Update Routes
 
@@ -72,12 +69,6 @@ const LayoutAuthUsuarioRoute = LayoutAuthUsuarioImport.update({
   getParentRoute: () => LayoutAuthRoute,
 } as any)
 
-const LayoutAuthEvaluacionIndexRoute = LayoutAuthEvaluacionIndexImport.update({
-  id: '/evaluacion/',
-  path: '/evaluacion/',
-  getParentRoute: () => LayoutAuthRoute,
-} as any)
-
 const LayoutAuthUsuarioPanelRoute = LayoutAuthUsuarioPanelImport.update({
   id: '/panel',
   path: '/panel',
@@ -89,20 +80,6 @@ const LayoutAuthUsuarioAjustesRoute = LayoutAuthUsuarioAjustesImport.update({
   path: '/ajustes',
   getParentRoute: () => LayoutAuthUsuarioRoute,
 } as any)
-
-const LayoutAuthUsuarioResultadosIndexRoute =
-  LayoutAuthUsuarioResultadosIndexImport.update({
-    id: '/resultados/',
-    path: '/resultados/',
-    getParentRoute: () => LayoutAuthUsuarioRoute,
-  } as any)
-
-const LayoutAuthUsuarioResultadosIdRoute =
-  LayoutAuthUsuarioResultadosIdImport.update({
-    id: '/resultados/$id',
-    path: '/resultados/$id',
-    getParentRoute: () => LayoutAuthUsuarioRoute,
-  } as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -178,27 +155,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutAuthUsuarioPanelImport
       parentRoute: typeof LayoutAuthUsuarioImport
     }
-    '/_layout/_auth/evaluacion/': {
-      id: '/_layout/_auth/evaluacion/'
-      path: '/evaluacion'
-      fullPath: '/evaluacion'
-      preLoaderRoute: typeof LayoutAuthEvaluacionIndexImport
-      parentRoute: typeof LayoutAuthImport
-    }
-    '/_layout/_auth/_usuario/resultados/$id': {
-      id: '/_layout/_auth/_usuario/resultados/$id'
-      path: '/resultados/$id'
-      fullPath: '/resultados/$id'
-      preLoaderRoute: typeof LayoutAuthUsuarioResultadosIdImport
-      parentRoute: typeof LayoutAuthUsuarioImport
-    }
-    '/_layout/_auth/_usuario/resultados/': {
-      id: '/_layout/_auth/_usuario/resultados/'
-      path: '/resultados'
-      fullPath: '/resultados'
-      preLoaderRoute: typeof LayoutAuthUsuarioResultadosIndexImport
-      parentRoute: typeof LayoutAuthUsuarioImport
-    }
   }
 }
 
@@ -207,15 +163,11 @@ declare module '@tanstack/react-router' {
 interface LayoutAuthUsuarioRouteChildren {
   LayoutAuthUsuarioAjustesRoute: typeof LayoutAuthUsuarioAjustesRoute
   LayoutAuthUsuarioPanelRoute: typeof LayoutAuthUsuarioPanelRoute
-  LayoutAuthUsuarioResultadosIdRoute: typeof LayoutAuthUsuarioResultadosIdRoute
-  LayoutAuthUsuarioResultadosIndexRoute: typeof LayoutAuthUsuarioResultadosIndexRoute
 }
 
 const LayoutAuthUsuarioRouteChildren: LayoutAuthUsuarioRouteChildren = {
   LayoutAuthUsuarioAjustesRoute: LayoutAuthUsuarioAjustesRoute,
   LayoutAuthUsuarioPanelRoute: LayoutAuthUsuarioPanelRoute,
-  LayoutAuthUsuarioResultadosIdRoute: LayoutAuthUsuarioResultadosIdRoute,
-  LayoutAuthUsuarioResultadosIndexRoute: LayoutAuthUsuarioResultadosIndexRoute,
 }
 
 const LayoutAuthUsuarioRouteWithChildren =
@@ -223,12 +175,10 @@ const LayoutAuthUsuarioRouteWithChildren =
 
 interface LayoutAuthRouteChildren {
   LayoutAuthUsuarioRoute: typeof LayoutAuthUsuarioRouteWithChildren
-  LayoutAuthEvaluacionIndexRoute: typeof LayoutAuthEvaluacionIndexRoute
 }
 
 const LayoutAuthRouteChildren: LayoutAuthRouteChildren = {
   LayoutAuthUsuarioRoute: LayoutAuthUsuarioRouteWithChildren,
-  LayoutAuthEvaluacionIndexRoute: LayoutAuthEvaluacionIndexRoute,
 }
 
 const LayoutAuthRouteWithChildren = LayoutAuthRoute._addFileChildren(
@@ -265,9 +215,6 @@ export interface FileRoutesByFullPath {
   '/password/reset': typeof LayoutPasswordResetRoute
   '/ajustes': typeof LayoutAuthUsuarioAjustesRoute
   '/panel': typeof LayoutAuthUsuarioPanelRoute
-  '/evaluacion': typeof LayoutAuthEvaluacionIndexRoute
-  '/resultados/$id': typeof LayoutAuthUsuarioResultadosIdRoute
-  '/resultados': typeof LayoutAuthUsuarioResultadosIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -279,9 +226,6 @@ export interface FileRoutesByTo {
   '/password/reset': typeof LayoutPasswordResetRoute
   '/ajustes': typeof LayoutAuthUsuarioAjustesRoute
   '/panel': typeof LayoutAuthUsuarioPanelRoute
-  '/evaluacion': typeof LayoutAuthEvaluacionIndexRoute
-  '/resultados/$id': typeof LayoutAuthUsuarioResultadosIdRoute
-  '/resultados': typeof LayoutAuthUsuarioResultadosIndexRoute
 }
 
 export interface FileRoutesById {
@@ -296,9 +240,6 @@ export interface FileRoutesById {
   '/_layout/password/reset': typeof LayoutPasswordResetRoute
   '/_layout/_auth/_usuario/ajustes': typeof LayoutAuthUsuarioAjustesRoute
   '/_layout/_auth/_usuario/panel': typeof LayoutAuthUsuarioPanelRoute
-  '/_layout/_auth/evaluacion/': typeof LayoutAuthEvaluacionIndexRoute
-  '/_layout/_auth/_usuario/resultados/$id': typeof LayoutAuthUsuarioResultadosIdRoute
-  '/_layout/_auth/_usuario/resultados/': typeof LayoutAuthUsuarioResultadosIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -312,9 +253,6 @@ export interface FileRouteTypes {
     | '/password/reset'
     | '/ajustes'
     | '/panel'
-    | '/evaluacion'
-    | '/resultados/$id'
-    | '/resultados'
   fileRoutesByTo: FileRoutesByTo
   to:
     | ''
@@ -325,9 +263,6 @@ export interface FileRouteTypes {
     | '/password/reset'
     | '/ajustes'
     | '/panel'
-    | '/evaluacion'
-    | '/resultados/$id'
-    | '/resultados'
   id:
     | '__root__'
     | '/_layout'
@@ -340,9 +275,6 @@ export interface FileRouteTypes {
     | '/_layout/password/reset'
     | '/_layout/_auth/_usuario/ajustes'
     | '/_layout/_auth/_usuario/panel'
-    | '/_layout/_auth/evaluacion/'
-    | '/_layout/_auth/_usuario/resultados/$id'
-    | '/_layout/_auth/_usuario/resultados/'
   fileRoutesById: FileRoutesById
 }
 
@@ -382,8 +314,7 @@ export const routeTree = rootRoute
       "filePath": "_layout/_auth.tsx",
       "parent": "/_layout",
       "children": [
-        "/_layout/_auth/_usuario",
-        "/_layout/_auth/evaluacion/"
+        "/_layout/_auth/_usuario"
       ]
     },
     "/_layout/login": {
@@ -403,9 +334,7 @@ export const routeTree = rootRoute
       "parent": "/_layout/_auth",
       "children": [
         "/_layout/_auth/_usuario/ajustes",
-        "/_layout/_auth/_usuario/panel",
-        "/_layout/_auth/_usuario/resultados/$id",
-        "/_layout/_auth/_usuario/resultados/"
+        "/_layout/_auth/_usuario/panel"
       ]
     },
     "/_layout/password/forgot": {
@@ -422,18 +351,6 @@ export const routeTree = rootRoute
     },
     "/_layout/_auth/_usuario/panel": {
       "filePath": "_layout/_auth/_usuario/panel.tsx",
-      "parent": "/_layout/_auth/_usuario"
-    },
-    "/_layout/_auth/evaluacion/": {
-      "filePath": "_layout/_auth/evaluacion/index.tsx",
-      "parent": "/_layout/_auth"
-    },
-    "/_layout/_auth/_usuario/resultados/$id": {
-      "filePath": "_layout/_auth/_usuario/resultados/$id.tsx",
-      "parent": "/_layout/_auth/_usuario"
-    },
-    "/_layout/_auth/_usuario/resultados/": {
-      "filePath": "_layout/_auth/_usuario/resultados/index.tsx",
       "parent": "/_layout/_auth/_usuario"
     }
   }

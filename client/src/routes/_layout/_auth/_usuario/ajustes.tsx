@@ -40,7 +40,7 @@ function RouteComponent() {
 		mutationKey: ["edit"],
 		mutationFn: editMe,
 		onSuccess: async () => {
-			toast("Usuario editado")
+			toast("Usuario editado con éxito")
 
 			await queryClient.invalidateQueries({ queryKey: ["usuario", usuarioCtx?.id] })
 
