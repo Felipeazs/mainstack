@@ -7,9 +7,10 @@ import type { AppEnv } from "../lib/types"
 import { ERROR_CODE } from "../lib/constants"
 import { deleteRedisItem, getRedisClient } from "../lib/redis"
 import { checkAuth } from "../middlewares/auth"
+import rateLimit from "../middlewares/rate-limit"
 import { tryCatch } from "../utils/try-catch"
 
-export default new Hono<AppEnv>().post("/", checkAuth, async (c) => {
+export default new Hono<AppEnv>().post("/", rateLimit, checkAuth, async (c) => {
 	const usuario = c.get("usuario")
 
 	// eliminar redis usuario
