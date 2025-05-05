@@ -53,7 +53,5 @@ export default new Hono().post("/", zValidator("json", loginSchema), rateLimit, 
 		event: "login",
 	})
 
-	throw new HTTPException(ERROR_CODE.INTERNAL_SERVER_ERROR, { message: "testing" })
-
 	return c.json({ access_token: tokens.access_token }, 200)
 })
