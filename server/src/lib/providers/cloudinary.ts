@@ -1,6 +1,6 @@
 import { v2 as cloudinary, type UploadApiResponse } from "cloudinary"
 
-import { env } from "../../t3-env"
+import { env } from "@/server/t3-env"
 
 cloudinary.config({
 	cloud_name: env.CLOUDINARY_NAME,
@@ -17,7 +17,7 @@ export async function uploadImage(
 	const res = await cloudinary.uploader.upload(`data:image/webp;base64,${image}`, {
 		resource_type: "image",
 		public_id: id,
-		folder: `${env.CLOUDINARY_FOLDER}/${subfolder}`,
+		folder: `${env.APP_NAME}/${subfolder}`,
 		overwrite: true,
 		transformation: [
 			{
@@ -33,7 +33,7 @@ export async function uploadImage(
 }
 
 export async function deleteImage(id: string, subfolder: string) {
-	const res = await cloudinary.uploader.destroy(`${env.CLOUDINARY_FOLDER}/${subfolder}/${id}`, {
+	const res = await cloudinary.uploader.destroy(`${env.APP_NAME}/${subfolder}/${id}`, {
 		resource_type: "image",
 	})
 

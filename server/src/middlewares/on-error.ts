@@ -4,18 +4,27 @@ import type { ContentfulStatusCode } from "hono/utils/http-status"
 
 import * as Sentry from "@sentry/node"
 
-import { initPosthog } from "../lib/providers/posthog"
-import { env } from "../t3-env"
+import { env } from "@/server/t3-env"
+
+import { sendDiscordMessage } from "../lib/providers/discord"
+import { tryCatch } from "../utils/try-catch"
 
 const onError: ErrorHandler = async (err: Error | HTTPException, c: Context) => {
 	const currentStatus = "status" in err ? err.status : c.newResponse(null).status
 	const statusCode = currentStatus !== 200 ? (currentStatus as ContentfulStatusCode) : 500
 
 	if (statusCode >= 500 && env.NODE_ENV === "production") {
-		const posthog = initPosthog()
-		posthog.captureException(err)
-
 		Sentry.captureException(err)
+
+		const embed = {
+			title: "Alerta - Revisar ERROR!",
+			description: `https://felipeazs.sentry.io/projects/${env.APP_NAME}`,
+			timestamp: new Date().toISOString(),
+		}
+		const { data: _, error } = await tryCatch(sendDiscordMessage(embed))
+		if (error) {
+			console.error(error.message)
+		}
 	} else {
 		console.error(err.message)
 	}
