@@ -7,25 +7,25 @@
 @font-face {
 	font-family: "Raleway";
 	font-weight: 300;
-	font-sytle: light;
+	font-style: light;
 	src: url("/fonts/Raleway-Light.ttf") format("truetype");
 }
 @font-face {
 	font-family: "Raleway";
 	font-weight: 400;
-	font-sytle: normal;
+	font-style: normal;
 	src: url("/fonts/Raleway-Regular.ttf") format("truetype");
 }
 @font-face {
 	font-family: "Raleway";
 	font-weight: 500;
-	font-sytle: medium;
+	font-style: medium;
 	src: url("/fonts/Raleway-Medium.ttf") format("truetype");
 }
 @font-face {
 	font-family: "Raleway";
 	font-weight: 700;
-	font-sytle: bold;
+	font-style: bold;
 	src: url("/fonts/Raleway-Bold.ttf") format("truetype");
 }
 

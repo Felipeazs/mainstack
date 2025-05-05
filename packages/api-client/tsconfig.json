@@ -1,0 +1,37 @@
+{
+	"extends": "../../tsconfig.json",
+	"compilerOptions": {
+		"jsx": "react-jsx",
+		"jsxImportSource": "react",
+		"lib": [
+			"ESNext",
+			"DOM",
+			"DOM.Iterable"
+		],
+		"rootDir": "src",
+		"paths": {
+			"@/server/*": [
+				"../../server/src/*"
+			]
+		},
+		"typeRoots": [
+			"../../node_modules/@types"
+		],
+		"types": [
+			"bun",
+			"node"
+		],
+		"declaration": true,
+		"declarationMap": true,
+		"outDir": "dist"
+	},
+	"watchOptions": {
+		"excludeDirectories": [
+			"**/node_modules",
+			"**/client"
+		]
+	},
+	"include": [
+		"src"
+	]
+}

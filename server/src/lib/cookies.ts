@@ -7,7 +7,7 @@ import type { EnvUsuario } from "./types"
 
 import { env } from "../t3-env"
 import { REDIS_REFRESH_TOKEN_DEV_TIME, REDIS_REFRESH_TOKEN_PROD_TIME } from "./constants"
-import { getRedisClient } from "./redis"
+import { getRedisClient } from "./providers/redis"
 
 export async function generateTokensAndCookies(c: Context, usuario: EnvUsuario) {
 	const isProd = env.NODE_ENV === "production"

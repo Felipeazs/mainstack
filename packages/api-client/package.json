@@ -1,0 +1,27 @@
+{
+	"name": "@monorepo/api-client",
+	"type": "module",
+	"version": "1.0.0",
+	"exports": {
+		".": "./src/index.ts"
+	},
+	"main": "./dist/index.js",
+	"scripts": {
+		"dev": "bun --hot src/index.ts",
+		"build": "rm -rf dist && tsc",
+		"lint": "eslint .",
+		"lint:fix": "bun run lint --fix",
+		"typecheck": "tsc --noEmit",
+		"clean": "rm -rf node_modules"
+	},
+	"dependencies": {
+		"@monorepo/eslint-config": "workspace:*",
+		"@monorepo/server": "workspace:*",
+		"hono": "^4.6.13"
+	},
+	"devDependencies": {
+		"@types/bun": "^1.2.12",
+		"@types/node": "^22.15.3",
+		"typescript": "^5.8.3"
+	}
+}

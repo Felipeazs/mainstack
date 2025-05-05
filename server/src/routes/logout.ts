@@ -5,7 +5,7 @@ import { HTTPException } from "hono/http-exception"
 import type { AppEnv } from "../lib/types"
 
 import { ERROR_CODE } from "../lib/constants"
-import { deleteRedisItem, getRedisClient } from "../lib/redis"
+import { deleteRedisItem, getRedisClient } from "../lib/providers/redis"
 import { checkAuth } from "../middlewares/auth"
 import rateLimit from "../middlewares/rate-limit"
 import { tryCatch } from "../utils/try-catch"

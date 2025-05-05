@@ -15,8 +15,8 @@ import notFound from "../middlewares/not-found"
 import onError from "../middlewares/on-error"
 import { env } from "../t3-env"
 import { BASE_PATH } from "./constants"
-import { initPosthog } from "./posthog"
-import { initRedis } from "./redis"
+import { initPosthog } from "./providers/posthog"
+import { initRedis } from "./providers/redis"
 
 const indexHtml = await readFile("public/index.html", "utf8")
 

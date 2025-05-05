@@ -1,8 +1,8 @@
 import { HTTPException } from "hono/http-exception"
 import { PostHog } from "posthog-node"
 
-import { env } from "../t3-env"
-import { ERROR_CODE } from "./constants"
+import { ERROR_CODE } from "@/server/lib/constants"
+import { env } from "@/server/t3-env"
 
 let client: PostHog | null = null
 

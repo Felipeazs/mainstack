@@ -1,8 +1,9 @@
 // src/lib/redis.ts
 import { createClient, type RedisClientType } from "redis"
 
-import { env } from "../t3-env"
-import { EXP_TIME_DEV, EXP_TIME_PROD } from "./constants"
+import { env } from "@/server/t3-env"
+
+import { EXP_TIME_DEV, EXP_TIME_PROD } from "../constants"
 
 let client: RedisClientType | null = null
 

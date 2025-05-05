@@ -9,7 +9,7 @@ import {
 	RATELIMIT_PROD_REQUESTS,
 	RATELIMIT_PROD_WINDOW,
 } from "../lib/constants"
-import { getRedisClient } from "../lib/redis"
+import { getRedisClient } from "../lib/providers/redis"
 import { env } from "../t3-env"
 import { tryCatch } from "../utils/try-catch"
 

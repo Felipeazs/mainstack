@@ -7,7 +7,7 @@
     "moduleDetection": "force",
     "useDefineForClassFields": true,
     "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "moduleResolution": "bundler",
     "strict": true,
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,

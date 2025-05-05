@@ -7,7 +7,7 @@ import type { EnvUsuario } from "../lib/types"
 
 import { ERROR_CODE } from "../lib/constants"
 import { generateTokensAndCookies } from "../lib/cookies"
-import { getRedisClient } from "../lib/redis"
+import { getRedisClient } from "../lib/providers/redis"
 import { env } from "../t3-env"
 import { tryCatch } from "../utils/try-catch"
 

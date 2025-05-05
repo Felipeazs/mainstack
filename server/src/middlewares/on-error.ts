@@ -4,7 +4,7 @@ import type { ContentfulStatusCode } from "hono/utils/http-status"
 
 import * as Sentry from "@sentry/node"
 
-import { initPosthog } from "../lib/posthog"
+import { initPosthog } from "../lib/providers/posthog"
 import { env } from "../t3-env"
 
 const onError: ErrorHandler = async (err: Error | HTTPException, c: Context) => {
