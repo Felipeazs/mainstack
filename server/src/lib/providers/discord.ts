@@ -35,7 +35,6 @@ export class DiscordClient {
 
 export async function sendDiscordMessage(embed: APIEmbed) {
 	const discord = new DiscordClient(env.DISCORD_BOT_TOKEN)
-	console.log(env.DISCORD_ID)
 	const dmChannel = await discord.createDM(env.DISCORD_ID)
 
 	await discord.sendEmbed(dmChannel.id, embed)

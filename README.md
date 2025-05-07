@@ -1,33 +1,132 @@
-![GitHub package.json version](https://img.shields.io/github/package-json/v/Felipeazs/monorepo_example) ![GitHub repo size](https://img.shields.io/github/repo-size/Felipeazs/monorepo_example) [![Deployment production pipeline](https://github.com/Felipeazs/monorepo_example/actions/workflows/ci.yml/badge.svg)](https://github.com/Felipeazs/monorepo_example/actions/workflows/ci.yml)
+# Mainstack
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/53862c2a473e971a4d0a/maintainability)](https://codeclimate.com/github/Felipeazs/monorepo_example/maintainability) [![Known Vulnerabilities](https://snyk.io/test/github/Felipeazs/monorepo_example/badge.svg?targetFile=package.json)](https://snyk.io/test/github/Felipeazs/monorepo_example?targetFile=package.json)
+Monorepo para una aplicación web moderna utilizando React (Vite) en el frontend y Hono.dev en el backend, todo escrito en TypeScript y gestionado con Bun.
 
-![image](https://img.shields.io/badge/Railway-131415?style=for-the-badge&logo=railway&logoColor=white)
+## Tabla de Contenidos
 
-# Monorepo Template - React (Vite) / Hono.dev
+- [Requisitos Previos](#requisitos-previos)
+- [Instalación](#instalación)
+- [Configuración](#configuración)
+  - [Variables de entorno](#variables-de-entorno)
+  - [Base de datos](#base-de-datos)
+- [Ejecución del Proyecto](#ejecución-del-proyecto)
+  - [Modo Desarrollo](#modo-desarrollo)
+  - [Modo Producción](#modo-producción)
+- [Estructura del Proyecto](#estructura-del-proyecto)
+- [Scripts Disponibles](#scripts-disponibles)
+- [Contribuciones](#contribuciones)
+- [Licencia](#licencia)
 
-To install dependencies:
+## Requisitos Previos
 
-```bash
-bun install
-```
+- [Bun](https://bun.sh/) instalado globalmente.
+- Node.js versión 18 o superior.
+- Git.
 
-To build:
+## Instalación
 
-```bash
-bun run build
-```
+1. Clona el repositorio:
 
-To run dev mode:
+   ```bash
+   git clone https://github.com/Felipeazs/mainstack.git
+   cd mainstack
+   ```
+
+2. Instala las dependencias:
+
+   ```bash
+   bun install
+   ```
+
+3. opcional: Si ya está instalada la aplicación:
+
+   ```bash
+   bun run clean
+   bun install
+   ```
+
+## Configuración
+
+### Variables de entorno
+
+1. Copia el archivo de ejemplo de variables de entorno:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Edita el archivo .env con tus configuraciones específicas. Asegúrate de proporcionar las credenciales y URLs necesarias para los servicios externos:
+   - [MongoDB](https://www.mongodb.com/docs/manual/reference/connection-string/)
+   - [Sentry](https://docs.sentry.io/concepts/key-terms/dsn-explainer/)
+   - [Posthog](https://posthog.com/docs/api)
+   - [Cloudinary](https://support.cloudinary.com/hc/en-us/articles/202520942-Access-key-management-adding-and-removing-API-keys-and-secrets)
+   - [Discord](https://discord.com/developers)
+   - [Redis](https://railway.com)
+
+### Base de datos
+
+1. Instala MongoDB Compass: https://www.mongodb.com/products/tools/compass
+2. Copia el string de conexión de la base datos
+3. Establece conexión a través de Compass
+
+## Ejecución del Proyecto
+
+### Modo Desarrollo
 
 ```bash
 bun run dev
 ```
 
-To run prod mode:
+La aplicación estará disponible en el puerto 5173 (frontend) y 3000 (backend)
+
+### Modo Producción
 
 ```bash
+bun run build
 bun run start
 ```
 
-open [localhost](http://localhost:3000)
+La aplicación estará disponible en el puerto 3000
+
+## Estructura del proyecto
+
+```bash
+
+|-- mainstack # raíz
+|   |-- client # frontend
+|   |-- server # backend
+|   |-- packages # utilidades compartidas
+|-- .env.example # ejemplo variables de entorno
+|-- package.json # scripts
+|-- tsconfig.json # configuración Typescript
+|-- bun.lock # Lockfile de Bun
+```
+
+## Scripts Disponibles
+
+| Comando           | Descripción                                  |
+| ----------------- | -------------------------------------------- |
+| bun install       | Instala todas las dependencias               |
+| bun run dev       | Inicia cliente y servidor en modo desarrollo |
+| bun run build     | Compila el proyecto para producción          |
+| bun run start     | Arranca la app en modo producción            |
+| bun run typecheck | Chequea tipos de variables                   |
+| bun run lint      | Ejecuta ESLint                               |
+| bun run lint:fix  | Corrige errores ESLint                       |
+| bun run clean     | Elimina node_modules y el build              |
+
+## Contribuciones
+
+1. Crea una rama:
+
+```bash
+git checkout -b feature/nueva-funcionalidad
+```
+
+2. Commit los cambios:
+
+```bash
+git commit -m "feat: X"
+```
+
+3. Enviar rama al repositorio remoto y abre un Pull Request
