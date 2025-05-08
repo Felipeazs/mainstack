@@ -13,6 +13,7 @@ import { getRedisClient } from "../lib/providers/redis"
 import { env } from "../t3-env"
 import { tryCatch } from "../utils/try-catch"
 
+// rate limiting function
 export default createMiddleware(async (c, next) => {
 	// cloudflare
 	const info = c.req.header("cf-connecting-ip") ?? ""

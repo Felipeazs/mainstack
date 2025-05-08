@@ -28,7 +28,7 @@ export function AppSidebar() {
 		<Sidebar className="bg-slate-50 p-4">
 			<SidebarContent>
 				<SidebarGroup />
-				<SidebarGroupLabel>The Circular Hub</SidebarGroupLabel>
+				<SidebarGroupLabel>The App Hub</SidebarGroupLabel>
 				<SidebarGroupContent>
 					<SidebarMenu>
 						<SidebarMenuItem className="grid w-full gap-2">

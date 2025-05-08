@@ -14,6 +14,9 @@ Monorepo para una aplicación web moderna utilizando React (Vite) en el frontend
   - [Modo Producción](#modo-producción)
   - [API](#api)
 - [Estructura del Proyecto](#estructura-del-proyecto)
+  - [Raíz](#raíz)
+  - [Client](#client)
+  - [Server](#server)
 - [Scripts Disponibles](#scripts-disponibles)
 - [Contribuciones](#contribuciones)
 - [CI Pipeline](#ci-pipeline)
@@ -111,19 +114,53 @@ La aplicación estará disponible en el puerto 3000
 |        | refresh  | privada           | chequea/refresca el token            |
 |        | usuario  | privada           | obtiene los datos del usuario        |
 
-## Estructura del proyecto
+Revisar [Postman](https://www.postman.co/workspace/Mainstack~5f8938f5-51e6-4194-94a2-5d3283aa9c38/collection/13333116-a7fc4a24-47bd-4c0a-a2c3-23bac942b889?action=share&creator=13333116&active-environment=13333116-34f65cc5-bc34-4c7d-b6c9-f077a042ae23) para ver documentación
+
+# Estructura del proyecto
+
+### Raíz
 
 ```bash
 
-|-- app # raíz
-|   |-- client # frontend
-|   |-- server # backend
-|   |-- packages # utilidades compartidas
+|-- app
+|   |-- client # frontend workspace
+|   |-- server # backend workspace
+|   |-- packages # utilidades compartidas entre ambientes
 |-- .github # ci pipeline
+|-- .env # variables de ambiente
 |-- .env.example # ejemplo variables de entorno
 |-- package.json # scripts
 |-- tsconfig.json # configuración Typescript
 |-- bun.lock # Lockfile de Bun
+```
+
+### Client
+
+```bash
+
+|-- client
+|   |-- src # components, hooks, lib, assets, utils...
+|   |-- public # public assets
+|   |-- node_modules # dependencias
+|-- .env # variables de ambiente
+|-- package.json # scripts
+|-- tsconfig.json # configuración Typescript
+|-- vite.config.ts # configuración Vite
+```
+
+### Server
+
+```bash
+
+|-- server
+|   |-- src # routes, middlewares, db, utils...
+|   |-- public # frontend build
+|   |-- dist # backend build
+|   |-- node_modules # dependencias
+|-- .env # variables de ambiente
+|-- package.json # scripts
+|-- tsconfig.json # configuración Typescript
+|-- drizzle.config.ts # configuración Drizzle ORM
 ```
 
 ## Scripts Disponibles
