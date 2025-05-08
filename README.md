@@ -12,6 +12,7 @@ Monorepo para una aplicación web moderna utilizando React (Vite) en el frontend
 - [Ejecución del Proyecto](#ejecución-del-proyecto)
   - [Modo Desarrollo](#modo-desarrollo)
   - [Modo Producción](#modo-producción)
+  - [API](#api)
 - [Estructura del Proyecto](#estructura-del-proyecto)
 - [Scripts Disponibles](#scripts-disponibles)
 - [Contribuciones](#contribuciones)
@@ -20,13 +21,13 @@ Monorepo para una aplicación web moderna utilizando React (Vite) en el frontend
 
 ## Requisitos Previos
 
-- [Bun](https://bun.sh/) instalado globalmente.
-- Node.js versión 18 o superior.
-- Git.
-- Sentry cli
+- [Bun](https://bun.sh/)
+- Node.js versión 18 o superior
+- Git
+- [Sentry cli](https://docs.sentry.io/cli/)
 - Docker
 - [Act](https://github.com/nektos/act)
-- Railway cli (opcional)
+- [Railway cli](https://docs.railway.com/guides/cli) (opcional)
 
 ## Instalación
 
@@ -61,7 +62,7 @@ Monorepo para una aplicación web moderna utilizando React (Vite) en el frontend
    cp .env.example server/.env
    ```
 
-2. Edita los archivos .env con las configuraciones específicas. Asegúrate de proporcionar las credenciales y URLs necesarias para los servicios externos:
+2. Edita los archivos .env con las configuraciones específicas para cada ambiente. Asegúrate de proporcionar las credenciales y URLs necesarias para los servicios externos:
    - [MongoDB](https://www.mongodb.com/docs/manual/reference/connection-string/)
    - [Sentry](https://docs.sentry.io/concepts/key-terms/dsn-explainer/)
    - [Posthog](https://posthog.com/docs/api)
@@ -69,7 +70,7 @@ Monorepo para una aplicación web moderna utilizando React (Vite) en el frontend
    - [Discord](https://discord.com/developers)
    - Redis: Variable disponible en Railway al crear un servicio de Redis
 
-Todos estos servicios están linkeados a la cuenta de google o github
+**Todos estos servicios están linkeados a la cuenta de google o github**
 
 ### Base de datos (UI)
 
@@ -96,6 +97,19 @@ bun run start
 ```
 
 La aplicación estará disponible en el puerto 3000
+
+### API
+
+| ruta   | recurso  | tipo              | comentarios                          |
+| ------ | -------- | ----------------- | ------------------------------------ |
+| health |          | pública           | verifica disponibilidad del servidor |
+| api    | login    | pública           | ingreso del usuario                  |
+|        | signup   | pública           | registro del usuario                 |
+|        | logout   | privada           | cierra la sesión del usuario         |
+|        | password | privada / pública | cambio de contraseña                 |
+|        | auth     | privada           | chequea sesión del usuario           |
+|        | refresh  | privada           | chequea/refresca el token            |
+|        | usuario  | privada           | obtiene los datos del usuario        |
 
 ## Estructura del proyecto
 
@@ -144,20 +158,28 @@ git commit -m "feat: X"
 # CI Pipeline
 
 1. Crear un Auth token en Sentry
-2. Agregar una nueva variable en github con el nombre de SENTRY_AUTH_TOKEN y pegar el auth token
-3. Agregar variable en archivo .env
-4. Testear en local con act:
-   - act --list
-   - act -j <job name>
-5. Testear en github: git push origin main
+2. Agregar una nueva variable en github con el nombre de SENTRY_AUTH_TOKEN
+3. Agregar la variable en archivo .env (raíz)
+4. Testear en local
+
+```bash
+act --list
+act -j <job name>
+```
+
+5. Testear en github
+
+```bash
+git push origin <branch>
+```
 
 # Despliegue
 
 1. Ingresar a Railway (cuenta de Github)
 2. Crear nuevo proyecto/servicio
 3. Linkear repositorio al proyecto/servicio
-4. Ingresar todas las variables de entorno -> deploy
-5. Chequear Wait for CI -> deploy
+4. Ingresar todas las variables de entorno
+5. Chequear Wait for CI
 6. Realizar un push para desplegar automáticamente los cambios al servidor
 
 Alternativamente, se puede utilizar el [cli](https://docs.railway.com/guides/cli) de Railway para simplificar estos pasos

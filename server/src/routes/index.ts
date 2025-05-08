@@ -18,9 +18,6 @@ export function registerRoutes(app: AppAPI) {
 			c.status(200)
 			return c.text("API live and running...")
 		})
-		.get("/error", (c) => {
-			return c.json({ message: "error route" })
-		})
 		.route("/login", login)
 		.route("/signup", signup)
 		.route("/logout", logout)
@@ -30,7 +27,6 @@ export function registerRoutes(app: AppAPI) {
 		.route("/usuario", usuario_route)
 }
 
-// to use in client api
 export const router = registerRoutes(
 	new Hono<AppEnv>({
 		strict: false,
