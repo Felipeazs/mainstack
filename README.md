@@ -15,6 +15,7 @@ Monorepo para una aplicación web moderna utilizando React (Vite) en el frontend
 - [Estructura del Proyecto](#estructura-del-proyecto)
 - [Scripts Disponibles](#scripts-disponibles)
 - [Contribuciones](#contribuciones)
+- [CI Pipeline](#ci-pipeline)
 - [Despliegue](#despliegue)
 
 ## Requisitos Previos
@@ -23,6 +24,8 @@ Monorepo para una aplicación web moderna utilizando React (Vite) en el frontend
 - Node.js versión 18 o superior.
 - Git.
 - Sentry cli
+- Docker
+- [Act](https://github.com/nektos/act)
 - Railway cli (opcional)
 
 ## Instalación
@@ -64,7 +67,7 @@ Monorepo para una aplicación web moderna utilizando React (Vite) en el frontend
    - [Posthog](https://posthog.com/docs/api)
    - [Cloudinary](https://support.cloudinary.com/hc/en-us/articles/202520942-Access-key-management-adding-and-removing-API-keys-and-secrets)
    - [Discord](https://discord.com/developers)
-   - [Redis](https://railway.com)
+   - Redis: Variable disponible en Railway al crear un servicio de Redis
 
 Todos estos servicios están linkeados a la cuenta de google o github
 
@@ -98,7 +101,7 @@ La aplicación estará disponible en el puerto 3000
 
 ```bash
 
-|-- mainstack # raíz
+|-- app # raíz
 |   |-- client # frontend
 |   |-- server # backend
 |   |-- packages # utilidades compartidas
@@ -138,13 +141,23 @@ git commit -m "feat: X"
 
 3. Enviar rama al repositorio remoto y abrir un Pull Request
 
+# CI Pipeline
+
+1. Crear un Auth token en Sentry
+2. Agregar una nueva variable en github con el nombre de SENTRY_AUTH_TOKEN y pegar el auth token
+3. Agregar variable en archivo .env
+4. Testear en local con act:
+   - act --list
+   - act -j <job name>
+5. Testear en github: git push origin main
+
 # Despliegue
 
 1. Ingresar a Railway (cuenta de Github)
 2. Crear nuevo proyecto/servicio
 3. Linkear repositorio al proyecto/servicio
-4. Ingresar todas las variables de entorno
-5. Generar un nuevo servicio Redis
-6. Linkear proyecto a Redis a través de las variables de entorno
+4. Ingresar todas las variables de entorno -> deploy
+5. Chequear Wait for CI -> deploy
+6. Realizar un push para desplegar automáticamente los cambios al servidor
 
 Alternativamente, se puede utilizar el [cli](https://docs.railway.com/guides/cli) de Railway para simplificar estos pasos

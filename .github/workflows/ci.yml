@@ -3,7 +3,7 @@ name: CI
 on: [push]
 
 jobs:
-  build:
+  pipeline:
     runs-on: ubuntu-latest
     env:
       SENTRY_AUTH_TOKEN: ${{secrets.SENTRY_AUTH_TOKEN}}
