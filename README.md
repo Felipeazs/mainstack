@@ -15,13 +15,15 @@ Monorepo para una aplicación web moderna utilizando React (Vite) en el frontend
 - [Estructura del Proyecto](#estructura-del-proyecto)
 - [Scripts Disponibles](#scripts-disponibles)
 - [Contribuciones](#contribuciones)
-- [Licencia](#licencia)
+- [Despliegue](#despliegue)
 
 ## Requisitos Previos
 
 - [Bun](https://bun.sh/) instalado globalmente.
 - Node.js versión 18 o superior.
 - Git.
+- Sentry cli
+- Railway cli (opcional)
 
 ## Instalación
 
@@ -52,10 +54,11 @@ Monorepo para una aplicación web moderna utilizando React (Vite) en el frontend
 1. Copia el archivo de ejemplo de variables de entorno:
 
    ```bash
-   cp .env.example .env
+   cp .env.example client/.env
+   cp .env.example server/.env
    ```
 
-2. Edita el archivo .env con tus configuraciones específicas. Asegúrate de proporcionar las credenciales y URLs necesarias para los servicios externos:
+2. Edita los archivos .env con las configuraciones específicas. Asegúrate de proporcionar las credenciales y URLs necesarias para los servicios externos:
    - [MongoDB](https://www.mongodb.com/docs/manual/reference/connection-string/)
    - [Sentry](https://docs.sentry.io/concepts/key-terms/dsn-explainer/)
    - [Posthog](https://posthog.com/docs/api)
@@ -63,7 +66,9 @@ Monorepo para una aplicación web moderna utilizando React (Vite) en el frontend
    - [Discord](https://discord.com/developers)
    - [Redis](https://railway.com)
 
-### Base de datos
+Todos estos servicios están linkeados a la cuenta de google o github
+
+### Base de datos (UI)
 
 1. Instala MongoDB Compass: https://www.mongodb.com/products/tools/compass
 2. Copia el string de conexión de la base datos
@@ -74,6 +79,7 @@ Monorepo para una aplicación web moderna utilizando React (Vite) en el frontend
 ### Modo Desarrollo
 
 ```bash
+bun run build
 bun run dev
 ```
 
@@ -96,6 +102,7 @@ La aplicación estará disponible en el puerto 3000
 |   |-- client # frontend
 |   |-- server # backend
 |   |-- packages # utilidades compartidas
+|-- .github # ci pipeline
 |-- .env.example # ejemplo variables de entorno
 |-- package.json # scripts
 |-- tsconfig.json # configuración Typescript
@@ -129,4 +136,15 @@ git checkout -b feature/nueva-funcionalidad
 git commit -m "feat: X"
 ```
 
-3. Enviar rama al repositorio remoto y abre un Pull Request
+3. Enviar rama al repositorio remoto y abrir un Pull Request
+
+# Despliegue
+
+1. Ingresar a Railway (cuenta de Github)
+2. Crear nuevo proyecto/servicio
+3. Linkear repositorio al proyecto/servicio
+4. Ingresar todas las variables de entorno
+5. Generar un nuevo servicio Redis
+6. Linkear proyecto a Redis a través de las variables de entorno
+
+Alternativamente, se puede utilizar el [cli](https://docs.railway.com/guides/cli) de Railway para simplificar estos pasos
