@@ -17,7 +17,7 @@
 	"dependencies": {
 		"@monorepo/eslint-config": "workspace:*",
 		"@monorepo/server": "workspace:*",
-		"hono": "^4.6.13"
+		"hono": "^4.7.9"
 	},
 	"devDependencies": {
 		"@types/bun": "^1.2.12",
