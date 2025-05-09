@@ -55,7 +55,7 @@
 		"drizzle-kit": "^0.30.6",
 		"eslint": "^9.26.0",
 		"eslint-plugin-format": "^0.1.3",
-		"react-email": "4.0.3",
+		"react-email": "4.0.11",
 		"tsc-alias": "^1.8.16",
 		"tsx": "^4.19.4",
 		"vite": "^6.3.5"
