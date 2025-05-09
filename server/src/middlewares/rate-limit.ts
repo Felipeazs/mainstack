@@ -38,7 +38,7 @@ export default createMiddleware(async (c, next) => {
 
 	// Set expiration if key is new
 	const rw = isProd ? RATELIMIT_PROD_WINDOW : RATELIMIT_DEV_WINDOW
-	if ((ttl as number) === -1) {
+	if ((ttl as unknown as number) === -1) {
 		await redis.expire(key, rw)
 	}
 
