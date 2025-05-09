@@ -27,7 +27,7 @@ type PostHogEvent = {
 	properties?: object
 }
 
-export function captureEvent({ distinct_id, event, properties }: PostHogEvent) {
+export function posthogEvent({ distinct_id, event, properties }: PostHogEvent) {
 	try {
 		if (env.NODE_ENV === "production" && client) {
 			client.capture({

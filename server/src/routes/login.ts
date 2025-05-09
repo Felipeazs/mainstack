@@ -8,7 +8,7 @@ import db from "../db"
 import { loginSchema, usuario as usuarioTable } from "../db/schemas"
 import { ERROR_CODE } from "../lib/constants"
 import { generateTokensAndCookies } from "../lib/cookies"
-import { captureEvent } from "../lib/providers/posthog"
+import { posthogEvent } from "../lib/providers/posthog"
 import { zValidator } from "../lib/validator-wrapper"
 import rateLimit from "../middlewares/rate-limit"
 import { tryCatch } from "../utils/try-catch"
@@ -48,7 +48,7 @@ export default new Hono().post("/", zValidator("json", loginSchema), rateLimit, 
 		throw new HTTPException(ERROR_CODE.INTERNAL_SERVER_ERROR, { message: tokenError.message })
 	}
 
-	captureEvent({
+	posthogEvent({
 		distinct_id: email,
 		event: "login",
 	})

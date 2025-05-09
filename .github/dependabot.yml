@@ -5,17 +5,22 @@
 
 version: 2
 updates:
-  - package-ecosystem: "Bun" # See documentation for possible values
-    directory: "/client" # Location of package manifests
+  - package-ecosystem: "bun"
+    directory: "/client"
     schedule:
       interval: "weekly"
-updates:
-  - package-ecosystem: "Bun" # See documentation for possible values
-    directory: "/server" # Location of package manifests
+
+  - package-ecosystem: "bun"
+    directory: "/server"
     schedule:
       interval: "weekly"
-updates:
-   - package-ecosystem: "Bun" # See documentation for possible values
-    directory: "/packages" # Location of package manifests
+
+  - package-ecosystem: "bun"
+    directory: "/packages/api-client"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
     schedule:
       interval: "weekly"

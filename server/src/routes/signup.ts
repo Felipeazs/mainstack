@@ -5,7 +5,7 @@ import { HTTPException } from "hono/http-exception"
 import db from "../db"
 import { signupSchema, usuario } from "../db/schemas"
 import { ERROR_CODE } from "../lib/constants"
-import { captureEvent } from "../lib/providers/posthog"
+import { posthogEvent } from "../lib/providers/posthog"
 import { zValidator } from "../lib/validator-wrapper"
 import rateLimit from "../middlewares/rate-limit"
 import { tryCatch } from "../utils/try-catch"
@@ -54,7 +54,7 @@ export default new Hono().post("/", zValidator("json", signupSchema), rateLimit,
 		throw new HTTPException(ERROR_CODE.INTERNAL_SERVER_ERROR, { message: dbError.message })
 	}
 
-	captureEvent({ distinct_id: email, event: "signup" })
+	posthogEvent({ distinct_id: email, event: "signup" })
 
 	return c.json({ usuario: nuevo_usuario[0].id }, 200)
 })
