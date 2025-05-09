@@ -1,5 +1,7 @@
+import type { CreateEmailOptions, CreateEmailResponseSuccess } from "resend"
+
 import { HTTPException } from "hono/http-exception"
-import { type CreateEmailOptions, type CreateEmailResponseSuccess, Resend } from "resend"
+import { Resend } from "resend"
 
 import { env } from "../../t3-env"
 import { ERROR_CODE, ERROR_MESSAGE } from "../constants"

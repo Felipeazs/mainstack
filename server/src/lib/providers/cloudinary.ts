@@ -1,4 +1,6 @@
-import { v2 as cloudinary, type UploadApiResponse } from "cloudinary"
+import type { UploadApiResponse } from "cloudinary"
+
+import { v2 as cloudinary } from "cloudinary"
 
 import { env } from "@/server/t3-env"
 

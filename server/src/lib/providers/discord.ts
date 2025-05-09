@@ -1,10 +1,11 @@
-import { REST } from "@discordjs/rest"
-import {
-	type APIEmbed,
-	type RESTPostAPIChannelMessageResult,
-	type RESTPostAPICurrentUserCreateDMChannelResult,
-	Routes,
+import type {
+	APIEmbed,
+	RESTPostAPIChannelMessageResult,
+	RESTPostAPICurrentUserCreateDMChannelResult,
 } from "discord-api-types/v10"
+
+import { REST } from "@discordjs/rest"
+import { Routes } from "discord-api-types/v10"
 
 import { env } from "@/server/t3-env"
 

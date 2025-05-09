@@ -1,6 +1,8 @@
+import type { Mock } from "vitest"
+
 import { HTTPException } from "hono/http-exception"
 import { Resend } from "resend"
-import { beforeEach, describe, expect, it, type Mock, vi } from "vitest"
+import { beforeEach, describe, expect, it, vi } from "vitest"
 
 import { enviarEmail } from "./resend" // Adjust the path
 

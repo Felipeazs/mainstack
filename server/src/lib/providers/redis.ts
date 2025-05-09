@@ -1,5 +1,7 @@
 // src/lib/redis.ts
-import { createClient, type RedisClientType } from "redis"
+import type { RedisClientType } from "redis"
+
+import { createClient } from "redis"
 
 import { env } from "@/server/t3-env"
 

@@ -1,4 +1,6 @@
-import { signupSchema, type SignupUsuario } from "@monorepo/server/db"
+import type { SignupUsuario } from "@monorepo/server/db"
+
+import { signupSchema } from "@monorepo/server/db"
 import { useMutation } from "@tanstack/react-query"
 import { useNavigate } from "@tanstack/react-router"
 import { toast } from "sonner"
