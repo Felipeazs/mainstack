@@ -18,11 +18,14 @@ jobs:
         shell: bash
         run: find . -type f -name ".env.example" -exec sh -c 'cp "$1" "${1%.*}"' _ {} \;
 
-      - name: Typecheck
+      - name: Typechecking
         run: bun run --filter '*' typecheck
 
-      - name: Lint
+      - name: Linting
         run: bun run --filter '*' lint
 
       - name: Build & Sentry Sourcemaps
         run: bun run --filter '*' build
+
+      - name: Testing
+        run: bun run --filter '*' test

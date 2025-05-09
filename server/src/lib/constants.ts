@@ -14,6 +14,15 @@ export const RATELIMIT_DEV_WINDOW = 60 // 1 min
 export const EXP_TIME_PROD = 3600
 export const EXP_TIME_DEV = 60
 
+export const EMAIL = {
+	FROM: "Acme <onbarding@resend.dev>",
+}
+
+export const SUCCESS = {
+	MESSAGE: "ok",
+	CODE: 200 as ContentfulStatusCode,
+}
+
 export const ERROR_CODE = {
 	BAD_REQUEST: 400 as ContentfulStatusCode,
 	UNAUTHORIZED: 401 as ContentfulStatusCode,

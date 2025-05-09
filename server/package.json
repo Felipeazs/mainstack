@@ -13,6 +13,7 @@
 		"start": "NODE_ENV=production bun dist/src/index.js",
 		"build": "tsc && npm run sentry:sourcemaps",
 		"dev": "bun --hot src/index.ts",
+		"test": "NODE_ENV=test vitest",
 		"lint": "eslint .",
 		"lint:fix": "bun run lint --fix",
 		"typecheck": "tsc --noEmit",

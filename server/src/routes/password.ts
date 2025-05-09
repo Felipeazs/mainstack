@@ -13,9 +13,9 @@ import {
 	resetPassTokenSchema,
 	usuario as usuarioTable,
 } from "../db/schemas"
-import { ERROR_CODE } from "../lib/constants"
+import { EMAIL, ERROR_CODE } from "../lib/constants"
 import { ForgotPass } from "../lib/providers/emails/forgot-pass"
-import { FROM, resend } from "../lib/providers/resend"
+import { enviarEmail } from "../lib/providers/resend"
 import { zValidator } from "../lib/validator-wrapper"
 import { checkAuth } from "../middlewares/auth"
 import rateLimit from "../middlewares/rate-limit"
@@ -57,16 +57,14 @@ export default new Hono<AppEnv>()
 		const resetLink = `${env.ORIGIN_URL}/password/reset/?token=${resetToken}`
 
 		// enviar correo al usuario con el link de reinicio
-		const { data: _, error } = await resend.emails.send({
-			from: FROM,
+		const emailOptions = {
+			from: EMAIL.FROM,
 			to: email,
 			subject: "cambio de contraseña",
 			react: ForgotPass({ email, link: resetLink }),
-		})
-
-		if (error) {
-			throw new HTTPException(ERROR_CODE.INTERNAL_SERVER_ERROR, { message: error.message })
 		}
+		await enviarEmail({ options: emailOptions })
+		// enviar correo al usuario con el link de reinicio
 
 		return c.json({ status: "ok" }, 200)
 	})
