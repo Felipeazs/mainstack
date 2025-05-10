@@ -72,5 +72,39 @@ describe("email service", () => {
 		mockEmailsSend.mockResolvedValue({ data: null, error: mockError })
 
 		await expect(enviarEmail({ options })).rejects.toThrow(HTTPException) // Or the specific error message if you prefer
+
+		expect(ResendMock).toHaveBeenCalledTimes(1)
+		expect(mockEmailsSend).toHaveBeenCalledTimes(1)
+		expect(mockEmailsSend).toHaveBeenCalledWith({
+			to: options.to,
+			from: options.from,
+			subject: options.subject,
+			html: options.html,
+		})
+	})
+
+	it("should throw an error for unexpected issues", async () => {
+		// Arrange
+		const options = {
+			to: "test@example.com",
+			from: "noreply@yourcompany.com",
+			subject: "Welcome!",
+			html: "<p>Welcome aboard!</p>",
+		}
+
+		// Simulate an unexpected error during the process
+		const unexpectedError = new Error("Some other issue")
+		mockEmailsSend.mockRejectedValue(unexpectedError)
+
+		// Act & Assert
+		await expect(enviarEmail({ options })).rejects.toThrow("Some other issue")
+		expect(ResendMock).toHaveBeenCalledTimes(0)
+		expect(mockEmailsSend).toHaveBeenCalledTimes(1)
+		expect(mockEmailsSend).toHaveBeenCalledWith({
+			to: options.to,
+			from: options.from,
+			subject: options.subject,
+			html: options.html,
+		})
 	})
 })
