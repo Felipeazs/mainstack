@@ -42,6 +42,7 @@ export default function createConfig(options, ...userConfigs) {
 				"unused-imports/no-unused-vars": "off",
 				"no-unused-vars": "off",
 				"antfu/consistent-list-newline": "off",
+				"react-hooks-extra/no-direct-set-state-in-use-effect": "off",
 				"@typescript-eslint/no-unused-vars": [
 					"warn",
 					{

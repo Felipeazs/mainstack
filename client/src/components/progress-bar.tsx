@@ -12,7 +12,6 @@ export function ProgressBar({ status, min }: ProgressProps) {
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-			// eslint-disable react-hooks-extra/no-direct-set-state-in-use-effect
 			setProgress((prevState) => {
 				if (status === 0) {
 					clearInterval(interval)

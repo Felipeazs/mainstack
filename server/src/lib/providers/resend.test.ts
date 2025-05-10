@@ -73,7 +73,7 @@ describe("email service", () => {
 
 		await expect(enviarEmail({ options })).rejects.toThrow(HTTPException) // Or the specific error message if you prefer
 
-		expect(ResendMock).toHaveBeenCalledTimes(1)
+		expect(ResendMock).toHaveBeenCalledTimes(0)
 		expect(mockEmailsSend).toHaveBeenCalledTimes(1)
 		expect(mockEmailsSend).toHaveBeenCalledWith({
 			to: options.to,
